@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TitleBar from './TitleBar/titleBar';
+import BookViewer from './BookViewer/bookViewer';
 import { render } from '@testing-library/react';
 
 class App extends Component {
@@ -35,23 +36,11 @@ class App extends Component {
             });
     }
     render() {
-        return (
-            <div className="container-fluid">
-                <TitleBar />
-                <div className="row row-spacer">
-                    <div className="col-md-4">
-                        {<button onClick={() => this.goToPreviousBook()}>Previous Book</button>}
-                    </div>
-                    <div className="col-md-4"> 
-                        <h1>{this.books[this.state.bookNumber].title}</h1>
-                        <h4>{this.books[this.state.bookNumber].author}</h4> 
-                    </div> 
-                    <div className="col-md-4"> 
-                        {<button onClick={() => this.goToNextBook()}>Next Book</button>} 
-                    </div>
-                </div>
-            </div>
-
+        return (        
+        <div className="container-fluid">
+            <TitleBar />
+            <BookViewer book={this.books[this.state.bookNumber]} NextBook={() => this.goToNextBook} PreviousBook={() => this.goToPreviousBook()}/>
+        </div>
         );
     }
 }   
